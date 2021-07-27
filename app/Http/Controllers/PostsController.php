@@ -114,6 +114,7 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
+		$post->comment()->delete();
 		$result = $post->delete();
 		if ($result) {
 			return response()->json(['result' => 'Deleted Successfully'], 200);
